@@ -19,9 +19,7 @@ include(generate_nauty_sizes.cmake)
 
 #hash define... not sure what other options do
 #add_definitions(-DHASH_hash_map)
-add_definitions(-DHASH_TCL_hash -DTR1 )
-
-
+add_definitions(-DHASH_TCL_hash -DTR1 -DCAIRO -DTK)
 
 include_directories("include")
 
@@ -32,4 +30,4 @@ add_subdirectory(graphcode)
 
 add_subdirectory(src)
 
-add_subdirectory(models)
+#add_subdirectory(models)

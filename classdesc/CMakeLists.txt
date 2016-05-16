@@ -3,18 +3,18 @@ add_custom_command(OUTPUT functiondb.h
   COMMAND sh ${CMAKE_CURRENT_SOURCE_DIR}/functiondb.sh > ${CMAKE_CURRENT_BINARY_DIR}/functiondb.h
 )
 
+add_executable(classdesc classdesc.cc functiondb.h ${XDR_OBJS})
+add_executable(insert-friend insert-friend.cc functiondb.h ${XDR_OBJS})
 
 if(ENABLE_XDR)
   add_definitions(-DXDR_PACK -DHAVE_LONGLONG -DTR1)
-  add_library(xdr_pack OBJECT xdr_pack.cc)
-
-  set(XDR_OBJS $<TARGET_OBJECTS:xdr_pack>)
+  add_library(xdr_pack xdr_pack.cc)
+  
+  target_link_libraries(classdesc xdr_pack)
 
 
 endif()
 
-add_executable(classdesc classdesc.cc functiondb.h ${XDR_OBJS})
-add_executable(insert-friend insert-friend.cc functiondb.h ${XDR_OBJS})
 
 
 

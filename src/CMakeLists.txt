@@ -16,4 +16,8 @@ endforeach()
 #find the generated cd files
 include_directories(${CMAKE_CURRENT_BINARY_DIR})
 
-add_library(ecolab ${ECOLAB_SRCS} ${CDHDRS})
+
+find_library(cairo cairo)
+
+add_library(ecolab SHARED ${ECOLAB_SRCS} ${CDHDRS})
+target_link_libraries(ecolab cairo)
